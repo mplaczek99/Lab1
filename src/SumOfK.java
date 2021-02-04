@@ -37,26 +37,48 @@ public class SumOfK {
             heapSort();
 
             // The counting algorithm
-                for (int i = 0; i < numbers.size() - 1; i ++) {
-                    num1 = numbers.get(i);
-                    for (int j = i; j < numbers.size(); j++) {
-                        num2 = numbers.get(j);
-                        if (num1 + num2 == answer) {
-                            found = true;
-                            return;
-                            /*
-                             Does the use of a return statement (which abruptly ends the loop by ending the method, make my algorithm not O(N)?
-                             Once it finds num1 + num2 = answer, it just terminates the loop, therefore, not checking the others...
-                             Is this a memory leak also? Or is the Scanner automatically closed?
-                            */
-                        }
-                        if (num1 + num1 == answer) {
-                            num2 = num1;
-                            found = true;
-                            return;
-                        }
-                    }
+
+//                for (int i = 0; i < numbers.size() - 1; i ++) {
+//                    num1 = numbers.get(i);
+//                    for (int j = i; j < numbers.size(); j++) {
+//                        num2 = numbers.get(j);
+//                        if (num1 + num2 == answer) {
+//                            found = true;
+//                            return;
+//                            /*
+//                             Does the use of a return statement (which abruptly ends the loop by ending the method, make my algorithm not O(N)?
+//                             Once it finds num1 + num2 = answer, it just terminates the loop, therefore, not checking the others...
+//                             Is this a memory leak also? Or is the Scanner automatically closed?
+//                            */
+//                        }
+//                        if (num1 + num1 == answer) {
+//                            num2 = num1;
+//                            found = true;
+//                            return;
+//                        }
+//                    }
+//                }
+
+            num1 = numbers.get(0);
+
+            for (int i = 1; i < numbers.size(); i ++) {
+                num2 = numbers.get(i);
+
+                if (num1 * 2 == answer) {
+                    num2 = num1;
+                    found = true;
+                    return;
                 }
+
+                if (num1 + num2 == answer) {
+                    found = true;
+                    return;
+                }
+
+                if (i < numbers.size()) {
+                    num1 = num2;
+                }
+            }
 
             sc.close();
         }
